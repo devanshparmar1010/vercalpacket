@@ -28,8 +28,9 @@ const CartPage = () => {
   const handlePayNow = async () => {
     const amount = getCartTotal();
     if (amount <= 0) return;
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     try {
-      const res = await fetch("/api/payment/orders", {
+      const res = await fetch(`${API_URL}/api/payment/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount }),
