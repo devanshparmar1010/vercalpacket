@@ -15,8 +15,8 @@ const HeroSection = () => {
                 <span className="block text-brand-red">FASTER</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-lg">
-                Run with purpose. Train with passion. Achieve the impossible
-                with PUMA's latest performance gear.
+                Unleash your potential with PUMA's cutting-edge performance
+                gear.
               </p>
             </div>
 

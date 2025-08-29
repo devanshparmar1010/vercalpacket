@@ -26,9 +26,14 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-black tracking-tight">
-              PUMA
-            </h1>
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center">
+                <span className="text-white text-xl font-bold">P</span>
+              </div>
+              <h1 className="text-2xl font-bold text-black tracking-wider">
+                PUMA
+              </h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}

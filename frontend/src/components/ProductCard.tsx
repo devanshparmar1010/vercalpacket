@@ -45,8 +45,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-4xl font-bold text-gray-400">
-            PUMA
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                <span className="text-white text-xl font-bold">P</span>
+              </div>
+              <span className="text-2xl font-bold text-gray-600">PUMA</span>
+            </div>
           </div>
         )}
 
