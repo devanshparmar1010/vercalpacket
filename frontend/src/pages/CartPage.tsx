@@ -32,12 +32,10 @@ const CartPage = () => {
     // Debug: Log environment variables
     console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
 
-    // Use hardcoded backend URL for production if env var fails
-    const API_URL =
-      import.meta.env.VITE_API_URL ||
-      (window.location.hostname.includes("vercel.app")
-        ? "https://vercalpacket1.vercel.app"
-        : "http://localhost:5000");
+    // Always use backend URL when on Vercel, localhost for development
+    const API_URL = window.location.hostname.includes("vercel.app")
+      ? "https://vercalpacket1.vercel.app"
+      : (import.meta.env.VITE_API_URL || "http://localhost:5000");
 
     console.log("Using API_URL:", API_URL);
 
