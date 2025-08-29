@@ -28,7 +28,7 @@ const CategoryPage = () => {
     const hash = id
       .split("")
       .reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
-    return (Math.abs(hash) % 100) + 50; // Price between $50 and $150
+    return (Math.abs(hash) % 100) + 50; // Price between ₹50 and ₹150
   };
 
   useEffect(() => {
@@ -102,7 +102,7 @@ const CategoryPage = () => {
                       {image.alt_description || `${categoryName} Shoe`}
                     </h3>
                     <p className="text-xl font-bold text-gray-900 mt-2">
-                      ${generatePrice(image.id).toFixed(2)}
+                      ₹{generatePrice(image.id).toFixed(2)}
                     </p>
                     <div className="mt-4 flex space-x-2">
                       <Button

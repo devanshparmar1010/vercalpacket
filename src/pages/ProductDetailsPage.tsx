@@ -172,11 +172,11 @@ const ProductDetailsPage = () => {
           </div>
           <div className="flex items-center space-x-2">
             <span className="text-2xl font-bold text-brand-red">
-              ${product.price}
+              ₹{product.price}
             </span>
             {product.originalPrice && (
               <span className="text-lg text-gray-400 line-through">
-                ${product.originalPrice}
+                ₹{product.originalPrice}
               </span>
             )}
           </div>

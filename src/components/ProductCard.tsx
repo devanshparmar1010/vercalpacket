@@ -1,5 +1,7 @@
 import React from "react";
 import { Heart, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useCart } from "../context/CartContext";
 
 interface ProductCardProps {
   id: number;
@@ -26,6 +28,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   isSale = false,
   image,
 }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({ id: String(id), name, price, image: image || "" });
+  };
+
   return (
     <div className="group relative bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
       {/* Product Image */}
@@ -101,12 +109,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Price */}
         <div className="flex items-center space-x-2">
-          <span className="text-lg font-bold text-gray-900">${price}</span>
+          <span className="text-lg font-bold text-gray-900">₹{price}</span>
           {originalPrice && (
             <span className="text-sm text-gray-500 line-through">
-              ${originalPrice}
+              ₹{originalPrice}
             </span>
           )}
+        </div>
+
+        {/* Add to Cart */}
+        <div className="pt-2">
+          <Button className="w-full" onClick={handleAddToCart}>
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>

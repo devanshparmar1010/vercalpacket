@@ -41,13 +41,13 @@ const CheckoutPage = () => {
               <span>
                 {item.name} x {item.quantity}
               </span>
-              <span>${(item.price * item.quantity).toFixed(2)}</span>
+              <span>₹{(item.price * item.quantity).toFixed(2)}</span>
             </li>
           ))}
         </ul>
         <div className="flex justify-between font-bold text-lg">
           <span>Total:</span>
-          <span>${getCartTotal().toFixed(2)}</span>
+          <span>₹{getCartTotal().toFixed(2)}</span>
         </div>
       </div>
       <Button

@@ -34,16 +34,26 @@ const CartPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount }),
       });
-      const order = await res.json();
-      if (!order.id) throw new Error("Failed to create order");
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log("Payment response:", data); // Debug log
+
+      // Check if the response has the expected structure
+      if (!data.success || !data.order || !data.order.id) {
+        throw new Error("Invalid order response from server");
+      }
 
       const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_B0ltWrdDwTjibk", // fallback to your test key
-        amount: order.amount,
-        currency: order.currency,
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_B0ltWrdDwTjibk",
+        amount: data.order.amount,
+        currency: data.order.currency,
         name: "PUMA Store",
         description: "Order Payment",
-        order_id: order.id,
+        order_id: data.order.id,
         handler: function (response) {
           alert(
             "Payment successful! Payment ID: " + response.razorpay_payment_id
@@ -63,6 +73,7 @@ const CartPage = () => {
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (err) {
+      console.error("Payment error:", err); // Debug log
       alert("Payment failed: " + err.message);
     }
   };
@@ -106,7 +117,7 @@ const CartPage = () => {
                           {item.name}
                         </h3>
                         <p className="text-lg font-bold text-gray-900">
-                          ${item.price.toFixed(2)}
+                          ₹{item.price.toFixed(2)}
                         </p>
                       </div>
                     </div>
@@ -150,7 +161,7 @@ const CartPage = () => {
                 <div className="flex justify-between items-center">
                   <p className="text-xl font-semibold text-gray-800">Total:</p>
                   <p className="text-2xl font-bold text-gray-900">
-                    ${getCartTotal().toFixed(2)}
+                    ₹{getCartTotal().toFixed(2)}
                   </p>
                 </div>
                 <Button className="w-full mt-6 text-lg" onClick={handlePayNow}>
